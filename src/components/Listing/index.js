@@ -12,8 +12,8 @@ const staticData = [
     bedCount: 1,
     bathCount: 2,
     price: '120.000 $',
-    pricePerSqMtr: '2.718 $/m^2',
-    sqMtr: '63 m^2',
+    pricePerSqMtr: '2.718 $/m',
+    sqMtr: '63 m',
   },
 ]
 

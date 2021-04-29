@@ -12,3 +12,13 @@
   border: none;
   color: white;
 }
+
+.bed-active {
+  background-color: #3CC268;
+  color: white;
+}
+
+.filter-save-btn {
+  background-color: #722AA0;
+  color: white;
+}

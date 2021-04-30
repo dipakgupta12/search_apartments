@@ -32,7 +32,7 @@
 
 .apartments {
   overflow-y: scroll;
-  height: 491px;
+  height: 540px;
 }
 
 ::-webkit-scrollbar {

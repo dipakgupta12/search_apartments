@@ -1,21 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchAndFilter from '../SearchAndFilter';
 import Apartments from '../Apartments';
 import Filters from '../Filters';
+import { getApartments } from '../../services/api';
 import './styles.css'
-
-const staticData = [
-  {
-    id: 1,
-    imageUrl: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YXBhcnRtZW50fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    title: 'Appartment',
-    bedCount: 1,
-    bathCount: 2,
-    price: '120.000 $',
-    pricePerSqMtr: '2.718 $/m',
-    sqMtr: '63 m',
-  },
-]
 
 let initialFilters = { minPrice: '', maxPrice: '', minSqm: '', maxSqm: '',  bedrooms: ''};
 
@@ -23,6 +11,17 @@ function Listing() {
   const [filterStates, setFilterStates] = useState(initialFilters);
   const [search, setSearch] = useState('');
   const [openFilters, setOpenFilters] = useState(false);
+  const [appartments, setAppartments] = useState([]);
+
+  useEffect(() => {
+    async function fetchApartments() {
+      const data  = await getApartments(initialFilters);
+      setAppartments(data);
+    }
+    if (!openFilters) {
+      fetchApartments();
+    }
+  }, [openFilters]);
 
   
   const onFiltersClick = () => {
@@ -32,7 +31,7 @@ function Listing() {
     setOpenFilters(!openFilters)
   }
 
-  const onSaveClick = () => {
+  const onSaveClick = async () => {
     initialFilters = {...initialFilters, ...filterStates};
     setOpenFilters(false);
   }
@@ -43,7 +42,7 @@ function Listing() {
       {openFilters ? (
         <Filters filterStates={filterStates} onSaveClick={onSaveClick} setFilterStates={setFilterStates} />
       ) : (
-        <Apartments shortedData={staticData} data={staticData} />
+        <Apartments data={appartments} />
       )}
     </div>
   )

@@ -4,10 +4,10 @@ function BedroomFilter(props) {
   const { filterStates = {}} = props;
   return (
     <>
-      <div className="fs-4 text-center fw-500">
+      <div className="fs-4 text-center fw-500 bedroom-filter-label">
         No. of Bedrooms
       </div>
-      <div className="d-flex border mx-3">
+      <div className="d-flex border mx-3 bedroom-filter">
         <div className={`border-right cursor-pointer flex-fill p-3 ${filterStates.bedrooms === '' && 'bed-active'}`} onClick={() => props.setFilterStates({ ...filterStates, bedrooms: '' })}>Todos</div>
         <div className={`border-right cursor-pointer flex-fill p-3 ${filterStates.bedrooms === 1 && 'bed-active'}`} onClick={() => props.setFilterStates({ ...filterStates, bedrooms: 1 })}>1+</div>
         <div className={`border-right cursor-pointer flex-fill p-3 ${filterStates.bedrooms === 2 && 'bed-active'}`} onClick={() => props.setFilterStates({ ...filterStates, bedrooms: 2 })}>2+</div>
